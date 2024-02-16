@@ -5,6 +5,7 @@ from src.logger import logging
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
+from src.components.data_transformation import DataTransformation
 
 @dataclass
 class DataIngestionConfig:
@@ -42,7 +43,7 @@ class DataIngestion:
 
             logging.info('The data ingestion process has completed')
 
-            # Return the 
+            # Return the paths
             return (self.ingestion_config.train_data_path, self.ingestion_config.test_data_path)
         
         except Exception as e:
@@ -51,4 +52,7 @@ class DataIngestion:
 
 if __name__ == '__main__':
     ingestion_obj = DataIngestion()
-    ingestion_obj.initiate_data_ingestion()
+    train_path, test_path = ingestion_obj.initiate_data_ingestion()
+
+    transformation_obejct = DataTransformation()
+    train_data_processed, test_data_processed, preprocessor_path = transformation_obejct.initiate_data_transformation(train_path, test_path)
