@@ -41,14 +41,13 @@ class DataTransformation:
         self.data_transformation_config = DataTransformationConfig()
     
     def get_data_transformer_object(self):
-        logging.info('The data transformation process is starting')
 
         try:
             # Get the numerical and caategorical features
-            numerical_features = ['Age']
-            categorical_features = ['Gender','Polyuria','Polydipsia','sudden weight loss','weakness',
-                                    'Polyphagia','Genital thrush','visual blurring','Itching','Irritability',
-                                    'delayed healing','partial paresis','muscle stiffness','Alopecia','Obesity','class']
+            numerical_features = ['age']
+            categorical_features = ['gender','polyuria','polydipsia','sudden_weight_loss','weakness',
+                                    'polyphagia','genital_thrush','visual_blurring','itching','irritability',
+                                    'delayed_healing','partial_paresis','muscle_stiffness','alopecia','obesity']
 
             # Define the preprocessing steps or pipeline for numerical and categorical columns
             numerical_pipeline = 'passthrough'
@@ -89,6 +88,15 @@ class DataTransformation:
             # Apply the preprocessor object
             df_train_preprocessed = preprocessing_object.fit_transform(df_train)
             df_test_processed = preprocessing_object.transform(df_test)
+
+            # Preprocess the target variable
+            custom_label_encoder = CustomLabelEncoder()
+            train_label_preprocessed = custom_label_encoder.fit_transform(df_train['class'])
+            test_label_preprocessed = custom_label_encoder.transform(df_test['class'])
+
+            # Append
+            df_train_preprocessed = np.c_[df_train_preprocessed, train_label_preprocessed]
+            df_test_processed = np.c_[df_test_processed, test_label_preprocessed]
 
             logging.info('The numerical and categoircal columns are transformed')
 

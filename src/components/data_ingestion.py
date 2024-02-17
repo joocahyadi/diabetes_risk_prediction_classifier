@@ -29,6 +29,19 @@ class DataIngestion:
         try:
             # Read the dataset from csv file format
             df = pd.read_csv('notebook\data\diabetes_risk_prediction_dataset.csv')
+
+            # Lowercase all columns' name
+            df.columns = df.columns.str.lower()
+            
+            # Rename some columns that have name with space
+            df = df.rename(columns={'sudden weight loss':'sudden_weight_loss',
+                        'visual blurring':'visual_blurring',
+                        'genital thrush':'genital_thrush',
+                        'delayed healing':'delayed_healing',
+                        'partial paresis':'partial_paresis',
+                        'muscle stiffness':'muscle_stiffness'
+                        })
+            
             logging.info('Successfully imported the dataset')
 
             # Create the folder

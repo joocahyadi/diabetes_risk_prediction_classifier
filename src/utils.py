@@ -2,7 +2,7 @@ import os
 import sys
 import pandas as pd
 import numpy as np
-import dill
+import pickle
 
 from sklearn.linear_model import LogisticRegression
 from sklearn.svm import SVC
@@ -26,8 +26,22 @@ def save_object(file_path, object):
         os.makedirs(dir_path, exist_ok=True)
 
         with open(file_path, 'wb') as f:
-            dill.dump(object, f)
+            pickle.dump(object, f)
 
+    except Exception as e:
+        raise CustomException(e, sys.exc_info())
+
+
+# Function to load objects
+def load_object(file_path):
+    """
+    This function is intended to save objects, like preprocessor and ML models.
+    """
+    
+    try:
+        with open(file_path, 'rb') as f:
+            return pickle.load(f)
+        
     except Exception as e:
         raise CustomException(e, sys.exc_info())
 
@@ -81,7 +95,7 @@ def train_evaluate_models(X_train, X_test, y_train, y_test, list_models, param, 
                 best_model = model
 
         # Return the report
-        return report, best_model, best_params, model_train_score_acc
+        return report, best_model, best_estimator, best_params, model_train_score_acc
 
     except Exception as e:
         raise CustomException(e, sys.exc_info())

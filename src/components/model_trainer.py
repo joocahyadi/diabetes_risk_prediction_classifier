@@ -60,7 +60,7 @@ class ModelTrainer:
             }
             
             # Train and get the evaluation of each model
-            report, best_model, best_params, train_score = train_evaluate_models(
+            report, best_model, best_estimator, best_params, train_score = train_evaluate_models(
                 X_train, X_test, y_train, y_test, models, param=params_grid, scoring='accuracy'
                 )
 
@@ -71,7 +71,7 @@ class ModelTrainer:
 
             # Save the best model
             save_object(file_path=self.model_trainer_config.trained_model_file_path,
-                        object=best_model)
+                        object=best_estimator)
             
             logging.info('The training phase has done')
 
