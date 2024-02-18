@@ -1,8 +1,9 @@
-pandas
-numpy
-seaborn
-streamlit
-fastapi
-scikit-learn
-xgboost
+pandas==2.2.0
+numpy==1.26.4
+seaborn==0.13.2
+streamlit==1.31.0
+fastapi==0.109.2
+scikit-learn==1.4.0
+xgboost==2.0.3
+gunicorn==21.2.0
 # -e .

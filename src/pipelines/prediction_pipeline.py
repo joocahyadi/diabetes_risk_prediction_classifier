@@ -1,11 +1,6 @@
 import sys
-import os
-import json
-import requests
-import numpy as np
 
 import pandas as pd
-import pickle
 
 from src.exception import CustomException
 from src.utils import load_object
@@ -21,34 +16,24 @@ class PredictPipeline:
 
     def predict(self, data):
         try:
-            # Define the backend url
-            url = "http://127.0.0.1:8000/predict"
 
             # Get the already fitted preprocessor and trained model
             preprocessor = load_object('artifacts/preprocessor.pkl')
+            model = load_object('artifacts/model.pkl')
 
             # Preprocess the input
             preprocessed_inputs = preprocessor.transform(data)
 
-            # Convert the preprocessed input (np array) to json
-            preprocessed_inputs_json = json.dumps(preprocessed_inputs.tolist())
-
-            # test = json.loads(preprocessed_inputs_json)
-
-            # Send the input data to the backend and get the prediction result
-            response = requests.post(url=url, json={"data": preprocessed_inputs_json})
-
-            # Convert the result from json to python dictionary
-            result = json.loads(response.content)
+            # Model prediction
+            result = model.predict(preprocessed_inputs)[0]
 
             # Change the ML raw result into Yes or No and return the result
             # 1 -> Yes
             # 0 -> No
-            if result["predicted_value"] == 1:
+            if result == 1:
                 return "Yes"
             else:
                 return "No"
-            # return result
         
         except Exception as e:
             raise CustomException(e, sys.exc_info())
