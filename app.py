@@ -104,6 +104,15 @@ if __name__ == "__main__":
         "Do you feel any presence of obesity?", ("Yes","No"), index=None
     ) 
 
+    # Sidebar
+    with st.sidebar:
+        # Give title
+        st.title('Check Out The Links Below for Other Resources! :smile:')
+
+        # Some links
+        st.link_button(label='Analysis Notebook', url='https://github.com/joocahyadi/diabetes_risk_prediction_classifier/blob/main/notebook/diabetes_notebook.ipynb')
+        st.link_button('Github Repository', url='https://github.com/joocahyadi/diabetes_risk_prediction_classifier/')
+
     # Send the input to the ML model in backend
     if st.button('Submit'):
         
