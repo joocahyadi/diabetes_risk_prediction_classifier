@@ -36,12 +36,12 @@ if __name__ == "__main__":
 
     ## Polyuria
     polyuria_option = st.selectbox(
-        "Do you have polyuria?", ("Yes","No"),index=None
+        "Do you feel extreme need to urinate?", ("Yes","No"),index=None
     )
 
     ## Polydipsia
     polydipsia_option = st.selectbox(
-        "Do you have polydipsia?", ("Yes","No"), index=None
+        "Do you feel excessive quite recently?", ("Yes","No"), index=None
     )
 
     ## Sudden weight loss
