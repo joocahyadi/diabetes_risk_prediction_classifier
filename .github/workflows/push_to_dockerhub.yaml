@@ -30,7 +30,7 @@ jobs:
       - name: Install huggingface-cli
         run: pip install -U "huggingface_hub[cli]"
 
-      - name: Push and Deploy the Web App to Huggingface spaces
+      - name: Push to Huggingface Spaces
         env:
-          HF_TOKEN: ${{ secrets.HUGGINGFACE_TOKEN }}
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: git push --force https://joocahyadi:$HF_TOKEN@huggingface.co/spaces/joocahyadi/diabetes_classifier_webapp main
