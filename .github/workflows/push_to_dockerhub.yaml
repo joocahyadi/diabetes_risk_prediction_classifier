@@ -24,3 +24,9 @@ jobs:
 
       - name: Push Docker image
         run: docker push joshiacahyadi/diabetes_classifier:latest
+
+      - name: Login to Huggingface
+        run: huggingface-cli login --api-key ${{ secrets.HUGGINGFACE_TOKEN }}
+
+      - name: Deploy to the Huggingface Spaces
+        run: huggingface-cli push --image joshiacahyadi/diabetes_classifier:latest --push-to-production
