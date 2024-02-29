@@ -1,3 +1,14 @@
+---
+title: Diabetes Classifier Webapp
+emoji: 💻
+colorFrom: gray
+colorTo: yellow
+sdk: streamlit
+sdk_version: 1.31.1
+app_file: app.py
+pinned: false
+---
+
 # Diabetes Risk Prediction Classifier
 
 ## Background
