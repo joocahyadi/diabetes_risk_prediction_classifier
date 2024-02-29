@@ -6,4 +6,5 @@ fastapi==0.109.2
 scikit-learn==1.4.0
 xgboost==2.0.3
 gunicorn==21.2.0
+huggingface-hub==0.21.2
 # -e .

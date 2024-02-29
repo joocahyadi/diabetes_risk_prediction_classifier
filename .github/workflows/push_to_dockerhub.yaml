@@ -1,4 +1,4 @@
-name: CI/CD Push to Dockerhub
+name: CI/CD Push to Dockerhub and Huggingface Spaces
 
 on:
   push:
@@ -29,4 +29,4 @@ jobs:
         run: huggingface-cli login --api-key ${{ secrets.HUGGINGFACE_TOKEN }}
 
       - name: Deploy to the Huggingface Spaces
-        run: huggingface-cli push --image joshiacahyadi/diabetes_classifier:latest --push-to-production
+        run: huggingface-cli push --image joshiacahyadi/diabetes_classifier:latest --push-to-production --name diabetes_classifier_webapp
